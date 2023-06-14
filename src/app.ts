@@ -1,1 +1,3 @@
-console.log('log')
+import test from "./unusedFunction";
+
+console.log(test)
