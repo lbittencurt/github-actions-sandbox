@@ -37,14 +37,20 @@ jobs:
         run: yarn ts-prune --error
 
   log:
-    name: Run unit tests
+    name: Log branch name
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (provide access)
         uses: actions/checkout@v3
 
       - name: Run log branch name
-        run: echo "This is a PR for ${{ github.ref_name }}"
+        run: |
+          echo "Slug variables"
+          echo "This is a PR for ${{ github.head_ref }}"
+          echo " - ${{ env.GITHUB_REF_SLUG }}"
+          echo " - ${{ env.GITHUB_HEAD_REF_SLUG }}"
+          echo " - ${{ env.GITHUB_BASE_REF_SLUG }}"
+          echo " - ${{ env.GITHUB_REPOSITORY_SLUG }}"
 
   unittest:
     if:  contains(github.ref_name, 'release')
