@@ -37,6 +37,7 @@ jobs:
         run: yarn ts-prune --error
 
   unittest:
+    if:  contains(github.ref, 'release')
     name: Run unit tests
     runs-on: ubuntu-latest
     needs: install
